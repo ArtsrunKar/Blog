@@ -1,0 +1,23 @@
+.DB{
+  text-align: center;
+  margin-top: 90px;
+}
+
+p {
+  margin-top: 50px;
+
+}
+
+
+
+
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+
