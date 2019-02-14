@@ -70,7 +70,7 @@ if (isset($_SESSION['User'])) {
 		$sql = mysqli_query($link, $query);
 
 		if ($sql) {
-			header('Location: http://blog.loc/post/');
+			header('Location: /blog/post/index.php');
 			exit;
 		} else {
 			echo '<p> Error ' . mysqli_error($link) . '</p>';
@@ -80,7 +80,7 @@ if (isset($_SESSION['User'])) {
 
 }
 else{
-		header("location:http://blog.loc/login_registration/login.php");
+		header("location:../blog/login_registration/login.php");
 	}
 
 }

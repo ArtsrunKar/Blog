@@ -16,7 +16,7 @@ $posts = get_posts();
     <div class="col-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><?php echo 'User - '.$post['user_name']; ?></h5>
+          <h5 class="card-title"><?php echo $post['user_name']; ?></h5>
           <p class="card-text"><?php echo 'Title - '.$post['title']; ?></p>
           <p class="card-text"><?php echo 'Description - '.$post['description']; ?></p>
         </div>
