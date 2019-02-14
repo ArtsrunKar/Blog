@@ -149,7 +149,7 @@ function login()
 				echo $name['name'];
 			}
 				$_SESSION['User'] = $name['name'];
-				header("location:welcom.php");
+				header("location:index.php");
 			}
 			else{
 				echo "Invalid";
