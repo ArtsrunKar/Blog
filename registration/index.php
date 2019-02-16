@@ -1,10 +1,8 @@
-# Blog
-
-
-<?php require_once '../functions.php' ?>
+<?php require '../functions.php' ?>
 <?php registration(); ?>
-<?php include '../header.php'; ?>
 
+<?php include '../header.php'; ?>
+<h1 style="text-align: center;">Create a new account</h1>
    <div class="mx-auto" style="width: 250px;margin-top: 50px;">
   <div class="container">
     <form method="POST">
@@ -26,9 +24,9 @@
     <label for="exampleInputPassword1">Password Confirmation</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password_confirmation">
   </div>
-<input type="submit" value="Register" class="btn btn-primary" name="submit">
+<input type="submit" value="Registration" class="btn btn-dark" name="submit">
 
   </form>
 </div>
 </div>
-<?php include '../footer'; ?>
+<?php include '../footer.php'; ?>

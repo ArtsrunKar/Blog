@@ -1,6 +1,7 @@
 <?php
+
 function get_users() {
-	require_once 'database.php';
+	require 'database.php';
 
 	$sql = "SELECT * FROM users";
 
@@ -9,6 +10,7 @@ function get_users() {
 	$user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 	return $user;
+	
 }
 
 function create_users() {
@@ -43,7 +45,7 @@ function create_users() {
 }
 
 function get_posts() {
-	require_once 'database.php';
+	require 'database.php';
 
 	$sql = "SELECT posts.*, users.name AS user_name FROM posts LEFT JOIN users ON users.id = posts.user_id ORDER BY posts.id DESC";
 
@@ -61,7 +63,7 @@ function create_posts() {
 if (isset($_SESSION['User'])) {
 	if (isset($_POST['add'])) {
 
-		$user_id = $_POST["user_id"];
+		$user_id = $_SESSION['User_id'];
 		$title = $_POST["title"];
 		$description = $_POST["description"];
 
@@ -70,7 +72,7 @@ if (isset($_SESSION['User'])) {
 		$sql = mysqli_query($link, $query);
 
 		if ($sql) {
-			header('Location: /blog/post/index.php');
+			header('Location: /post');
 			exit;
 		} else {
 			echo '<p> Error ' . mysqli_error($link) . '</p>';
@@ -80,7 +82,8 @@ if (isset($_SESSION['User'])) {
 
 }
 else{
-		header("location:../blog/login_registration/login.php");
+		header("location:/login");
+		
 	}
 
 }
@@ -105,10 +108,10 @@ function registration()
 			if (mysqli_num_rows($data) == 0) {
 				$query = "INSERT INTO `users`(`name`, `email`, `password`, `active`, `age`) VALUES('$name','$email','$password' ,0,50)";
 				mysqli_query($link,$query);
-				echo "Registration successful";
-				echo '<a href="http://blog.loc/login_registration/login.php">To Login</a>';
-				mysqli_close($link);
-				exit();
+				
+				header("location:/login");
+				
+				
 
 			}
 
@@ -127,7 +130,7 @@ function login()
 
 	session_start();
 	if (isset($_SESSION['User'])) {
-		header("location:welcom.php");
+		header("location:/blog");
 	}
 	else{
 	if (isset($_POST['login'])) {
@@ -145,11 +148,12 @@ function login()
 			
 
 			if (mysqli_fetch_assoc($data)) {
-				foreach ($data as $name) {
-				echo $name['name'];
+				foreach ($data as $user) {
+				echo $user['name'];
 			}
-				$_SESSION['User'] = $name['name'];
-				header("location:index.php");
+				$_SESSION['User'] = $user['name'];
+				$_SESSION['User_id'] =$user['id'];
+				header("location:/blog");
 			}
 			else{
 				echo "Invalid";

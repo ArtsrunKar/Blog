@@ -1,4 +1,6 @@
+<?php include 'database.php'; ?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 15px;">
-      <a class="navbar-brand" href="/blog/index.php">BLOG</a>
+      <a class="navbar-brand" href="/blog">BLOG</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,12 +26,27 @@
         </ul>
          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/login_registration/login.php">Login <?php session_start();
+                <a class="nav-link" href="/login"><?php session_start();
 if (isset($_SESSION['User'])) {
-echo $_SESSION['User'];} ?></a>
+echo 'Hi '.$_SESSION['User'];} 
+else{
+    echo "Login";
+
+}?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="logout.php?logout">Logout</a>
+                <a class="nav-link" href="logout.php?logout"><?php session_start();
+if (isset($_SESSION['User'])) {
+echo "Logout";} ?><?php 
+
+  session_start();
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    header("location:/login");
+
+  }
+
+ ?></a>
             </li>
         </ul>
       </div>

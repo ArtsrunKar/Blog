@@ -21,3 +21,9 @@ p {
 }
 
 
+
+.btn-primary {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}

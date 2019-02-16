@@ -3,16 +3,17 @@
 $posts = get_posts();
 
 
-
 ?>
 <?php include '../header.php'?>
-<div class="row">
-  <a class="btn btn-primary" href="/post/create" role="button" style="float:right;">Add posts</a>
+<div class="text-right">
+  <a class="btn btn-dark" href="create" role="button" style="float:right;">Add posts</a>
 </div>
 <div class="row">
 
 
-  <?php foreach($posts as $post) { ?>
+  <?php foreach($posts as $post) { if ($_SESSION['User_id']==$post['user_id']) {
+    # code...
+   ?>
     <div class="col-4">
       <div class="card">
         <div class="card-body">
@@ -22,8 +23,8 @@ $posts = get_posts();
         </div>
       </div>
     </div>
-  <?php  } ?>
-  <a class="btn btn-primary" href="../index.php">To Main</a>
+  <?php  }} ?>
+
 
 
 </div>
