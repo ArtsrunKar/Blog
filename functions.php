@@ -90,6 +90,7 @@ else{
 
 function registration()
 {
+	session_start();
 	require 'database.php';
 	if (isset($_POST['submit'])) {
 
@@ -109,10 +110,23 @@ function registration()
 				$query = "INSERT INTO `users`(`name`, `email`, `password`, `active`, `age`) VALUES('$name','$email','$password' ,0,50)";
 				mysqli_query($link,$query);
 				
-				header("location:/login");
+				//header("location:/login");
+			
 				
-				
+				$query = "SELECT `id`,`email`,`name` FROM `users` WHERE email = '$email' AND password = '$password'";
+			$data = mysqli_query($link,$query);
 
+			
+			
+
+				if (mysqli_fetch_assoc($data)) {
+				foreach ($data as $user) {
+				echo $user['name'];
+			}
+				$_SESSION['User'] = $user['name'];
+				$_SESSION['User_id'] =$user['id'];
+				header("location:/blog");
+			}
 			}
 
 			else{
