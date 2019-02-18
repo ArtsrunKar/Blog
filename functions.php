@@ -144,7 +144,8 @@ function login()
 
 	session_start();
 	if (isset($_SESSION['User'])) {
-		header("location:/blog");
+		header("location:/update_data");
+
 	}
 	else{
 	if (isset($_POST['login'])) {
@@ -167,6 +168,7 @@ function login()
 			}
 				$_SESSION['User'] = $user['name'];
 				$_SESSION['User_id'] =$user['id'];
+
 				header("location:/blog");
 			}
 			else{
@@ -175,5 +177,27 @@ function login()
 		}
 	}
 }
+}
+
+ function update_data()
+{
+	require 'database.php';
+	session_start();
+	$sql = "SELECT * FROM users";
+
+	$result = mysqli_query($link, $sql);
+
+	$user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+
+	foreach ($user as $users) {
+		echo $user['name'];
+		echo $user['email'];
+		$_SESSION['User'] = $users['name'];
+		$_SESSION['Email'] = $users['email'];
+		$_SESSION['Password'] = $users['password'];
+	}
+	
+
 }
 ?>

@@ -1,20 +1,19 @@
 <?php require "../functions.php"; ?>
-<?php
-$posts = get_posts();
-
-
-?>
+<?php $posts = get_posts();?>
 <?php include '../header.php'?>
+
 <div class="text-right">
-  <a class="btn btn-dark" href="create" role="button" style="float:right;">Add posts</a>
+  <div class="row">
+  <a class="btn btn-dark" href="create" role="button" style="float:right;">Add post</a>
 </div>
-<div class="row">
+</div>
+<div class="row" style="margin-top: 10px">
 
 
   <?php foreach($posts as $post) { if ($_SESSION['User_id']==$post['user_id']) {
     # code...
    ?>
-    <div class="col-4">
+    <div style="margin-top: 8px;"  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"><?php echo $post['user_name']; ?></h5>

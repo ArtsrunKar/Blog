@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 15px;">
-      <a class="navbar-brand" href="/blog">BLOG</a>
+      <a class="navbar-brand" href="/">BLOG</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +20,7 @@
          
          
           <li class="nav-item">
-            <a class="nav-link" href="/post">Posts</a>
+            <a class="nav-link" href="/post">My Post</a>
           </li>
          
         </ul>
@@ -28,7 +28,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/login"><?php session_start();
 if (isset($_SESSION['User'])) {
-echo 'Hi '.$_SESSION['User'];} 
+echo 'Hi '.$_SESSION['User'];
+
+} 
 else{
     echo "Login";
 
