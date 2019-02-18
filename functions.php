@@ -153,7 +153,7 @@ function login()
 		$password = md5($_POST['password']);
 
 		if (empty($_POST['email']) || empty($_POST['password'])) {
-			echo "havqi ara";
+			echo "Enter email or password";
 		}
 		else{
 			$query = "SELECT `id`,`email`,`name` FROM `users` WHERE email = '$user_name' AND password = '$password'";
@@ -169,7 +169,7 @@ function login()
 				$_SESSION['User'] = $user['name'];
 				$_SESSION['User_id'] =$user['id'];
 
-				header("location:/blog");
+				header("location:/");
 			}
 			else{
 				echo "Invalid";
@@ -179,7 +179,7 @@ function login()
 }
 }
 
- function update_data()
+ function user_data()
 {
 	require 'database.php';
 	session_start();
@@ -199,5 +199,14 @@ function login()
 	}
 	
 
+}
+function update_data()
+{
+	require_once 'database.php';
+	session_start();
+	if (isset($_POST['save'])) {
+		
+
+	}
 }
 ?>

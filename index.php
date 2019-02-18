@@ -1,7 +1,7 @@
 <?php require "functions.php"; ?>
 <?php $posts = get_posts();?>
 <?php include 'header.php'; ?>
-<link rel="stylesheet" href="css/style.css">
+
 
 <div class="row" style="margin-top: 10px">
 
