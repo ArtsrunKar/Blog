@@ -1,6 +1,7 @@
 <?php require '../functions.php' ?>
 <?php session_start(); ?>
 <?php user_data(); ?>
+<?php change_password(); ?>
 
 <?php include '../header.php'; ?>
 
@@ -14,15 +15,15 @@
         
   <div class="form-group">
     <label for="exampleInputPassword1">Current password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="password">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="current_password">
   </div>
     <div class="form-group">
     <label for="exampleInputPassword1">New password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="password">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="new_password">
   </div>
     <div class="form-group">
     <label for="exampleInputPassword1">Re-type new password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="password">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="retype_new_password">
   </div>
  
 <input type="submit" value="Save" class="btn btn-dark" name="save">

@@ -28,9 +28,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/login"><?php session_start();
 if (isset($_SESSION['User'])) {
-echo 'Hi '.$_SESSION['User'];
+echo 'Hi '.$_SESSION['User_info']['name'];
 
-} 
+}
+ 
 else{
     echo "Login";
 
