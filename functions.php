@@ -85,6 +85,7 @@
 		}
 		else
 		{
+			$_SESSION['prev_url'] = "/post/create";
 			header("location:/login");
 		}
 	}
@@ -97,6 +98,10 @@
 
 		if (isset($_POST['submit']))
 		{
+				$query = "SELECT email FROM `users`";
+				$data = mysqli_query($link, $query);
+				$user = mysqli_fetch_array($data);
+				
 			$name = $_POST['name'];
 			$email = $_POST['email'];
 			$password = $_POST['password'];
@@ -110,11 +115,13 @@
 			{
 				$query = "SELECT * FROM `users` WHERE email ='$email'";
 				$data = mysqli_query($link, $query);
+				
 				$password = md5($password_confirmation);
-				if (mysqli_num_rows($data) == 0)
-				{
+				if (mysqli_num_rows($data) == 0) {
 					$query = "INSERT INTO `users`(`name`, `email`, `password`, `active`, `age`) VALUES('$name','$email','$password' ,0,50)";
 					mysqli_query($link, $query);
+					$data = mysqli_query($link, $query);
+					
 
 					$query = "SELECT `id`,`email`,`name` FROM `users` WHERE email = '$email' AND password = '$password' LIMIT 1";
 					$data = mysqli_query($link, $query);
@@ -125,10 +132,9 @@
 						$_SESSION['User'] = $user['name'];
 						header("location:/");
 					}
+		
 					
-				}
-				else
-				{
+				} else {
 					echo "Login exists";
 				}
 			}
@@ -164,7 +170,11 @@
 					{
 						$_SESSION['User_info'] = $user;
 						$_SESSION['User'] = $user['name'];
-						header("location:/");
+						$url  = "/";
+						if (isset($_SESSION['prev_url'])) {
+							$url = $_SESSION['prev_url'];
+						}
+						header("location:{$url}");
 					}
 					
 					
@@ -206,13 +216,24 @@
 			$name = $_POST['name'];
 			$email = $_POST['email'];
 			$user_id = $_SESSION['User_info']['id'];
-
-			$query = "UPDATE `users` SET name = '$name', email = '$email' WHERE id=$user_id";
+			$query = "SELECT * FROM users WHERE email = '{$email}' LIMIT 1";
 			$data=mysqli_query($link,$query);
-			
-			//$error=mysqli_error();
-			//return $error;
+			$user = mysqli_fetch_assoc($data);
 
+			//$_SESSION['User_info']=$user;var_dump($_SESSION['User_info']['password']); exit;
+			if (is_null($user) || $user['id'] == $user_id) {
+				$query = "UPDATE `users` SET name = '$name', email = '$email' WHERE id=$user_id";
+				$data=mysqli_query($link,$query);
+				$_SESSION['User_info']['name'] = $_POST['name'];
+				$_SESSION['User_info']['email'] = $_POST['email'];
+			}
+			else{
+				echo "email est";
+			}
+		
+		 
+			
+			
 		}
 	}
 
@@ -220,24 +241,31 @@
 	{
 		require 'database.php';
 		session_start();
+		//var_dump($_SESSION['User_info']['password']);exit;
+		
 		if (isset($_POST['save'])) {
 			$current_password = $_POST['current_password'];
 			$new_password = $_POST['new_password'];
 			$retype_new_password = $_POST['retype_new_password'];
 			$current_passwords = md5($current_password);
 
+
 		if ($current_passwords!=$_SESSION['User_info']['password'] || ($new_password != $retype_new_password))
 			{
-				echo "Password incorrect";
+				$err="Password incorrect";
+				//var_dump($current_passwords);
+				//var_dump($_SESSION['User_info']['password']);exit;
 			}
 
-			
-			if ($current_passwords==$_SESSION['User_info']['password'] || ($new_password = $retype_new_password)) 
+			else{
+			if ($current_passwords==$_SESSION['User_info']['password'] && ($new_password = $retype_new_password)) 
 			{
 				$new_password = md5($retype_new_password);
 				$query = "UPDATE `users` SET password='$new_password' WHERE password='$current_passwords'";
 				$data = mysqli_query($link,$query);
 			}
+
+		  }
 
 		}
 	}

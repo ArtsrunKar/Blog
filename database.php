@@ -9,7 +9,5 @@ else{
 	// echo "oka"; exit;
 }
 
-
-
 ?>
 

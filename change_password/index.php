@@ -15,10 +15,12 @@
         
   <div class="form-group">
     <label for="exampleInputPassword1">Current password</label>
+    <span class="error"><?php echo $err; ?></span>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="current_password">
   </div>
     <div class="form-group">
     <label for="exampleInputPassword1">New password</label>
+
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="new_password">
   </div>
     <div class="form-group">

@@ -2,7 +2,7 @@
 
 <?php user_data(); ?>
 <?php update_data(); ?>
-<?php $user =update_data(); ?>
+
 
 <?php include '../header.php'; ?>
 
@@ -15,7 +15,7 @@
     <form method="POST">
         <div class="form-group">
     <label for="exampleInputEmail1">Your Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp" placeholder="Enter new name" name="name" value="<?php echo $_SESSION['User']; ?>">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp" placeholder="Enter new name" name="name" value="<?php echo $_SESSION['User_info']['name']; ?>">
     
   </div>
   <div class="form-group">
