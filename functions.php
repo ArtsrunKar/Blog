@@ -55,22 +55,53 @@ function create_posts()
     session_start();
     if (isset($_SESSION['User'])) {
         if (isset($_POST['add'])) {
+
             $user_id = $_SESSION['user_info']['id'];
             $title = $_POST["title"];
             $description = $_POST["description"];
-            $query = "INSERT INTO `posts`(`user_id`, `title`, `description`)  VALUES ($user_id,'$title','$description')";
-            $sql = mysqli_query($link, $query);
-            if ($sql) {
-                header('Location: /post');
-                exit;
-            } else {
-                echo '<p> Error ' . mysqli_error($link) . '</p>';
+            if (empty($_POST['title'])) {
+                $title_err = "You cannot use a blank title";
+            }
+            if (empty($_POST['description'])) {
+
+
+                $description_err = "You cannot use a blank  description";
+
+            }
+            if (!empty($title) && !empty($description)) {
+
+                $query = "INSERT INTO `posts`(`user_id`, `title`, `description`)  VALUES ($user_id,'$title','$description')";
+                $sql = mysqli_query($link, $query);
+                if ($sql) {
+                    header('Location: /post');
+                    exit;
+                } else {
+                    echo '<p> Error ' . mysqli_error($link) . '</p>';
+                }
             }
         }
     } else {
         $_SESSION['prev_url'] = "/post/create";
         header("location:/login");
     }
+
+    return $err = [
+
+        "title_err" => $title_err,
+        "description_err" => $description_err
+
+
+    ];
+}
+
+function delete_post()
+{
+
+}
+
+function edit_post()
+{
+    # code...
 }
 
 
