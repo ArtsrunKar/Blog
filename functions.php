@@ -8,8 +8,8 @@ function get_users()
     $result = mysqli_query($link, $sql);
     $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $user;
+    
 }
-
 
 function create_users()
 {
@@ -20,6 +20,7 @@ function create_users()
 
         if (isset($_GET['add'])) {
             $name = $_GET["name"];
+            
             $email = $_GET["email"];
             $age = $_GET["age"];
             $query = "INSERT INTO `users`(`name`, `email`, `active`, `age`, `password`)  VALUES ('$name','$email',0,$age,555)";
@@ -312,15 +313,28 @@ function change_password()
         $new_password = $_POST['new_password'];
         $retype_new_password = $_POST['retype_new_password'];
         $current_passwords = md5($current_password);
+         if (empty($_POST['current_password'])) {
+            $current_pass_empty_err = "You cannot use a blank  password";
+        }
+         if (empty($_POST['new_password'])) {
+            $new_pass_empty_err = "You cannot use a blank  password";
+        }
+         if (empty($_POST['retype_new_password'])) {
+            $retype_new_pass_empty_err = "You cannot use a blank  password";
+        }
         //var_dump($current_passwords);var_dump($_SESSION['user_info']['password']);
         if ($current_passwords != $_SESSION['user_info']['password']) {
             $err = "Your current password was incorrect";
 
             //var_dump($current_passwords);
             //var_dump($_SESSION['user_info']['password']);exit;
-        } elseif ($new_password != $retype_new_password) {
-            $error = "You must enter the same password twice in order to confirm it.";
-        } else {
+        }
+         if ($new_password != $retype_new_password) {
+              $error = "You must enter the same password twice in order to confirm it.";
+        } 
+
+        if (!empty($current_password) && !empty($current_password) && !empty($current_password)) {
+         
             if ($current_passwords == $_SESSION['user_info']['password'] && ($new_password = $retype_new_password)) {
                 $new_password = md5($retype_new_password);
                 $query = "UPDATE `users` SET password='$new_password' WHERE password='$current_passwords'";
@@ -341,7 +355,10 @@ function change_password()
     return $errors = [
         "current_pass_err" => $err,
         "new_pass_err" => $error,
-        "save" => $save
+        "save" => $save,
+        "current_pass_empty_err" => $current_pass_empty_err,
+        "new_pass_empty_err" => $new_pass_empty_err,
+        "retype_new_pass_empty_err" => $retype_new_pass_empty_err
     ];
 }
 
