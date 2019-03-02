@@ -146,6 +146,7 @@ function edit_post()
 
 }
 
+
 function get_post_by_id($id)
 {
     require 'database.php';

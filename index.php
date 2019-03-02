@@ -1,6 +1,8 @@
 <?php require "functions.php"; ?>
 <?php $posts = get_posts(); ?>
+
 <?php include 'header.php'; ?>
+
 
 
 <div class="row" style="margin-top: 10px">
@@ -16,12 +18,15 @@
                     <p class="card-text"><?php echo  $post['description']; ?></p>
                     <p style="text-align: right;" class="card-text"><?php echo $post['date']; ?></p>
                 </div>
-            </div><br>
+                   
+            
+        </div><br>
         </div>
     <?php } ?>
 
 
 </div>
+
 <?php include 'footer.php'; ?>
 
 
