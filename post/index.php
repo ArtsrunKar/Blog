@@ -21,14 +21,15 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $post['user_name']; ?></h5>
+                        <h5 class="card-title"><?php echo $post['user_name']; ?></h5><hr>
                         <p class="card-text"><?php echo $post['title']; ?></p>
                         <p class="card-text"><?php echo $post['description']; ?></p>
                     </div>
 
+                        <p style="text-align: right;" class="card-text"><?php echo $post['date']; ?></p>
                 </div>
 
-                <div>
+                <div style="display: grid;">
 
 
                     <a href="/post/edit?id=<?php echo $post['id']; ?>" name="post_edit"
@@ -37,10 +38,11 @@
                 
 
 
-                    <form method="POST">
+                    <form style="display: grid;" method="POST">
                         <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                         <button name="post_delete" class="btn btn-secondary btn-sm">delete</button>
                     </form>
+                    <br>
 
                 </div>
 
