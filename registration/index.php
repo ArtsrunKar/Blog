@@ -9,14 +9,15 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp"
-                           placeholder="Enter Name" name="name">
+                           placeholder="Enter Name" name="name"  value="<?php echo $_POST['name']; ?>" >
                     <span style="color: red" class="error"><?php echo $err['name_empty']; ?></span>
 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                           placeholder="Enter email" name="email">
+                           placeholder="Enter email" name="email" value="<?php echo $_POST['email']; ?>">
+
                     <span style="color: red" class="error"><?php echo $err['email_empty'];
                         echo $err['email_exist_err']; ?></span>
                 </div>
