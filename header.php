@@ -24,6 +24,7 @@
     <i class="menu_open fa fa-bars fa-lg"></i>
     <i class="menu_close fa fa-times fa-lg"></i>
   </span>
+ 
     <ul class="menu_items">
         <li><a href="/"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
         <li><a href="/post"><i class="icon fa fa-sticky-note-o fa-2x" aria-hidden="true"></i> My Post</a></li>
@@ -54,5 +55,6 @@
     </ul>
     <main class="content">
         <div class="content_inner">
-            <h1>𝐵𝓁𝒶𝒸𝓀 𝐵𝓁𝑜𝑔</h1>
+            <h1 style="color: black;">𝐵𝓁𝒶𝒸𝓀 𝐵𝓁𝑜𝑔</h1>
             <br><br>
+

@@ -3,7 +3,7 @@
 
 <?php include '../header.php'; ?>
 
-    <h1 style="text-align: center;">Login</h1>
+    <h1 style="text-align: center;">Log In</h1>
     <div class="mx-auto" style="width: 250px;margin-top: 50px;">
         <div class="container">
             <form method="POST">
@@ -21,7 +21,7 @@
                     <span style="color: red" class="error"><?php echo $err['pass_empty'];
                         echo $err['login_err']; ?></span>
                 </div>
-                <button type="submit" name="login" class="btn btn-dark">Submit</button>
+                <button type="submit" name="login" class="btn btn-dark">Log In</button>
                 <a href="/registration" class="btn btn-dark" role="button" aria-pressed="true">Regisration</a>
             </form>
         </div>
